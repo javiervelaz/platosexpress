@@ -1,0 +1,112 @@
+<div class="container" > 
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <!-- Footer widget -->
+            <!-- Heading -->
+            <h2>Crea tu Plato</h2>
+            <!-- Paragraph -->
+            <!-- Subscribe form -->
+            <form  name="platoForm" >
+                <div class="row header-top"> 
+                    <h3>Ingresa tu menu aqui</h3>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Nombre del plato" ng-model="nombre" name="nombre" required />
+                    </div>
+                    <div class="form-group">
+                        <p ng-show="platoForm.descripcion.$invalid" class="help-block">Descripción</p>
+                        <textarea class="form-control" type="text" placeholder="Ingrediente,modeo de preparacion,observaciones..." ng-model="descripcion" name="descripcion" required></textarea>  
+                    </div>    
+
+                </div> 
+                <div class="row header-top"> 
+                    <h3>Datos del plato</h3>
+                    <div class="form-group">
+                        <h4>Tipo de Comida</h4>
+                        <select   ng-model="tipoComida.tipo" name="tipoComida"
+                                  ng-options="item for item in tipoComidaList" required >
+                        </select>    
+                    </div>
+                    <div class="form-group">
+                        <h4>Tipo de Cocina</h4>
+                        <select name="tipoCocina"  ng-model="tipoCocina.tipo" 
+                                ng-options="item for item in ComidaList"
+                                required>
+                        </select>    
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" min="1" max="9999" placeholder="Ingresa el precio en pesos" ng-model="precio" name="precio"  required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" min="1" max="99" placeholder="Cantidad de porciones del plato" ng-model="cantPorciones.porciones" name="porciones"  required />
+                    </div>    
+
+                </div>  
+                <div class="row header-top"> 
+                    <h3>Disponibilidad</h3>  
+                    
+                    <div class="form-group">
+                        <span ng-show="platoForm.fechaDesde.$invalid" class="help-block" required>Fecha desde Obligatoria</span>
+                        <h4>Fecha desde</h4>
+                        
+                        <ng-datepicker name="startDate" ng-model="startDate"  required>
+                        </ng-datepicker>
+                        
+                        <br /> 
+                        <p ng-show="platoForm.fechaHasta.$invalid" class="help-block">Fecha hasta no valida</p>
+                        <h4>Fecha Hasta</h4>
+                        
+                        <!-- custom yyyymmdd() is used to avoid issue with date parsing -->
+                        <ng-datepicker ng-model="endDate" name="fechaHasta" start-date="{{startDate.yyyymmdd()}}" compare-with-start-date>
+                        </ng-datepicker>
+                      
+                        <br />           
+                    </div>
+                    <div class="form-group">
+                         <h4>Horario Entrega</h4>
+                        <select name="horarioEntrega"  ng-model="horarioEntrega" >
+                            <option value="">---Elegir uno---</option>
+                            <option value="1">Desayuno</option>
+                            <option value="2">Almuerzo</option>
+                            <option value="3">Merienda</option>
+                            <option value="4">Cena</option>
+                        </select>  
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3>Dias Disponibles</h3>
+                        <ul style="list-style-type: none">
+                            <div class="input-group-lg"  ng-repeat="dias in semana">
+                                <li > <input type="checkbox" 
+                                             value="{{dias}}" 
+                                             name="selectDay[]" 
+                                             ng-checked="selection.indexOf(dias) > - 1"
+                                             ng-click="toogleSelection(dias)"
+                                             > {{dias}} </li>   
+                            </div>
+                        </ul>
+                    </div>    
+                </div>    
+                <div class="row header-top">
+                    <h3>Subi una foto de tu plato.</h3>
+                    <input id="file" name="file" ng-model="imgFile"  type="file" fileread="uploadme.src" model="files" previmages="imagesPrev"  >  
+                </div>    
+                <div class="row header-top">
+                    <div class="menu-head" ng-repeat=" img in imagesPrev">
+                        <img class="menu-img img-responsive img-thumbnail" ng-src="{{ img}}" reguired/>
+                        <div class="title-border br-red"></div>
+                    </div>  
+                </div>  
+                <div class="row header-top"> 
+                    <br>
+                    <button  ng-click="SavePlato()" class="btn btn-danger" type="submit">Crear</button>
+                </div>    
+            </form>
+        </div>
+    </div> 
+</div>   
+ <!-- error messages template -->
+    <script id="errors-template.html" type="text/ng-template">
+        <span ng-message="required">* required!</span>
+        <span class="form-error" ng-message="checkEndDate">* end date cannot be earlier than start date</span>
+    </script>
+

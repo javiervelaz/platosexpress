@@ -1,0 +1,39 @@
+<!--user loged-->
+<div  ng-show="{{ hideLogin}}">
+    <ul class="nav navbar-nav nav__user" >
+        <li><b>{{ nombreUser[0]}} </b> </li>
+        <li> &nbsp </li>
+        <li> Vendedor: </li>
+        <li> &nbsp </li>
+        <li> <ul class="nav navbar-nav" >
+                <li ng-repeat="n in calif(1, califVendedor)"><img src="img/estrella.png" style="height: 10px"></li>
+
+            </ul> </li>
+        <li> &nbsp </li>
+        <li> Comprador: </li>
+        <li> &nbsp </li>
+        <li> <ul class="nav navbar-nav" >
+                <li ng-repeat="n in calif(1, califComprador)"><img src="img/estrella.png" style="width: 10px; vertical-align: middle;"></li>
+
+            </ul> </li>
+        <li> &nbsp </li>
+        
+        <li ng-show="notiffHide"><a href="/user/notificaciones"><img src="img/campana_roja.png"> <span class="badge"> {{canditadNotif}} </span> </a> </li>
+        <li> &nbsp </li>
+        <li><a href="/platos/new" class="btn btn-success btn-xs" >Ofrecer Plato</a></li>
+        <li><button class="btn btn-danger" ng-click="logOut()" type="button">Salir</button></li>
+        <li></li>
+    </ul>
+
+
+
+
+</div>
+
+
+<!--user unloged-->
+<div ng-hide="{{ hideLogin}}" class="user__unloged">
+    <a href="/user/login" class="btn btn-success" >Login</a>
+
+    <a href="/user/new" class="btn btn-success" >Registro</a>
+</div>

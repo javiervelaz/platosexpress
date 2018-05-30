@@ -1,0 +1,64 @@
+<div class="container" > 
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <!-- Footer widget -->
+            <!-- Heading -->
+            <h2>Republicar Plato</h2>
+            <!-- Paragraph -->
+            <!-- Subscribe form -->
+            <form  name="platoForm" >
+                <div class="row header-top"> 
+                    <div class="form-group">
+                        <label><h3>Nombre</h3></label>
+                        <p > {{plato.nombre}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label><h3>Descripcion</h3></label>
+                        <p > {{plato.descripcion}}</p>
+                       
+                    </div>    
+
+                </div> 
+                <div class="row header-top"> 
+                    <h3>Datos del plato</h3>
+                    
+                    <div class="form-group">
+                        <input class="form-control" type="number" min="1" max="9999" placeholder="Ingresa el precio en pesos" ng-model="precio" name="precio"  required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" min="1" max="99" placeholder="Cantidad ofrecida" ng-model="cantidad_disponible" name="cantidad_disponible"  required />
+                    </div>    
+
+                </div>  
+                <div class="row header-top"> 
+                    <div class="form-group">
+                        <h3>Dias Disponibles</h3>
+                        <ul style="list-style-type: none">
+                            <div class="input-group-lg"  ng-repeat="dias in semana">
+                                <li > <input type="checkbox" 
+                                             value="{{dias}}" 
+                                             name="selectDay[]" 
+                                             ng-checked="selection.indexOf(dias) > - 1"
+                                             ng-click="toogleSelection(dias)"
+                                             > {{dias}} </li>   
+                            </div>
+                        </ul>
+                    </div>    
+                </div> 
+                <div class="row header-top">
+                    <img class="img-responsive " src="{{plato.urlPath}}" alt="" />
+                </div>
+                <div class="row header-top" > 
+                    <br>
+                    <button  ng-click="SavePlato()" class="btn btn-danger" type="submit">Republicar</button>
+                </div>    
+            </form>
+        </div>
+    </div> 
+</div>   
+ <!-- error messages template -->
+    <script id="errors-template.html" type="text/ng-template">
+        <span ng-message="required">* required!</span>
+        <span class="form-error" ng-message="checkEndDate">* end date cannot be earlier than start date</span>
+    </script>
+

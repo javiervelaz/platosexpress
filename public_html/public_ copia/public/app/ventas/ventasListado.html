@@ -1,0 +1,85 @@
+<div class="inner-page padd">
+    <!-- Nutrition Start -->
+    <h2> Mis platos Vendidos</h2>
+    <div class="general">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <!-- General information content -->
+                    <div class="general-content">
+
+                        <ul class="nav nav-tabs">
+                            <li class="active" ng-class="{'active':currentTab == 'Tab'}">
+                                <a data-toggle="tab" ng-click="selectEstado('i')">Mis Ventas a confirmar</a>
+                            </li>
+                            <li ng-class="{'active':currentTab == 'Tab'}">
+                                <a data-toggle="tab"  ng-click="selectEstado('c')" >Ventas Confirmadas</a>
+                            </li>
+                            <li ng-class="{'active':currentTab == 'Tab'}">
+                                <a data-toggle="tab" ng-click="selectEstado('s')">Ventas Suspendidtas</a>
+                            </li>
+                            <li ng-class="{'active':currentTab == 'Tab'}">
+                                <a data-toggle="tab" ng-click="selectEstado('e')">Ventas entregadas</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" ng-class="{'active':currentTab == 'Tab' }" id="Tab">
+                                <div class="nutrition">
+                                    <div class="row" ng-repeat="(i,ventas) in misVentas">
+                                        <hr />
+                                        <div class="col-sm-4" >
+                                            <!-- Image -->
+                                            <img class="img-thumbnail" src="{{ ventas['platoImg'][i] ?  ventas['platoImg'][i] : 'img/platovacio.jpg' }}" alt="" />
+                                            <!-- Paragraph -->
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="table-responsive" style="display:inine" >
+                                                <ul style="list-style-type: none">
+                                                    <li>  Nombre del plato : {{ ventas['platoNombre'][i]}}</li>
+                                                    <li>  Cantidad : {{ ventas['pedidoData'].cantidad}}</li>
+                                                    <li>  Precio : {{ ventas['pedidoData'].precio}}</li>
+                                                    <li>  Comprador : {{ ventas['userEmail'][i]}} </li>
+                                                    <li>  Estado : {{ ventas['pedidoData'].estado}} </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4" >
+                                            <button ng-if="estadoPedido == 'i' || estadoPedido == 'c'" class="btn btn-danger" ng-really-message="Seguro que quiere suspender este pedido?" ng-really-click="doSuspender(ventas['usuario_id'],ventas['id_pedido'])"  >Suspender</button>
+                                            
+                                        </div>
+                                        <div class="col-sm-4" >
+                                            <button ng-if="estadoPedido == 's'" class="btn btn-danger" ng-really-message="Seguro que quiere eliminar este pedido?" ng-really-click="doDelete(ventas['id_pedido'])"  >Eliminar</button>
+
+                                        </div>
+                                        <div class="col-sm-4" ng-if="estadoPedido == 'e'">
+                                            <select  ng-options=" v for v in itemCalif" ng-model="calificacion" ></select>
+
+                                            <a  class="btn btn-success"  ng-click="doCalificar(ventas['id_plato'],ventas['id_pedido'], calificacion)">Calificar al Comprador</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Navigation tab -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Nutrition End -->
+
+    <!-- Showcase Start -->
+
+
+
+    <!-- Showcase End -->
+
+</div><!-- / Inner Page Content End -->
+

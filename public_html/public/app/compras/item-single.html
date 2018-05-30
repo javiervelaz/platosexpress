@@ -1,0 +1,108 @@
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-89503034-1', 'auto');
+  ga('send', 'pageview');
+
+</script>   
+<!-- Page Wrapper -->
+<div class="wrapper">
+    <!-- Banner Start -->
+    <div class="banner padd ">
+        <div class="container">
+            <!-- Image -->
+            <img class="img-responsive" src="img/crown-white.png" style="width: 5px" alt="" />
+            <!-- Heading -->
+            <h2 class="white">Finalizar la Compra</h2>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!-- Banner End -->
+    <!-- Inner Content -->
+    <div class="inner-page padd">
+
+        <!-- Single Item Start -->
+
+        <div class="single-item">
+            <div class="container">
+
+                <!-- Shopping single item contents -->
+                <div class="single-item-content">
+                    <ngcart-cart></ngcart-cart>
+                    <button class="btn btn-danger" ng-really-message="Seguro que quiere finalizar la compra?" ng-really-click="doComprar()" ng-disabled="!mostrarBoton" >Comprar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Single Item End -->
+        
+    </div><!-- / Inner Page Content End -->
+
+</div><!-- / Wrapper End -->
+<script type="text/ng-template" id="template/ngCart/cart.html">
+    <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    Your cart is empty
+    </div>
+
+    <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+
+    <table class="table table-striped ngCart cart">
+
+    <thead>
+    <tr>
+    <th></th>
+    <th></th>
+    <th>Cantidad</th>
+    <th>Precio</th>
+    <th>Total</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr ng-show="ngCart.getTax()">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
+    <td>{{ ngCart.getTax() | currency }}</td>
+    </tr>
+    <tr ng-show="ngCart.getShipping()">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Shipping:</td>
+    <td>{{ ngCart.getShipping() | currency }}</td>
+    </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td >Total:</td>
+    <td>{{ ngCart.totalCost() | currency }}</td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr ng-repeat="item in ngCart.getCart().items track by $index">
+    <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
+
+    <td>{{ item.getName() }}</td>
+    <td>
+    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+    </td>
+    <td>{{ item.getPrice() | currency}}</td>
+    <td>{{ item.getTotal() | currency }}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+
+</script>
+<script type="text/ng-template" id="template/ngCart/checkout.html">
+<div  ng-if="service=='http' || service == 'log'">
+    <button class="btn btn-danger" ng-click="checkout()" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Comprar</button>
+</div>
+
+</script>

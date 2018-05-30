@@ -1,0 +1,84 @@
+<div class="inner-page padd" >	
+
+    <!-- Nutrition Start -->
+    <div class="nutrition">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <!-- Nutrition Item -->
+                    <div class="nutrition-item">
+                        <!-- Heading -->
+                        <h4>{{ platoDetalle.nombre}}</h4>
+                        <!-- Image -->
+
+                        <!-- Paragraph -->
+                        <p>{{ platoDetalle.descripcion}}</p>
+                        <!-- Nutrition information table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td>Precio</td>
+                                        <td>{{ platoDetalle.precio}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cantidad Disponible</td>
+                                        <td>{{ platoDetalle.cantidad_disponible}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cocina</td>
+                                        <td>{{ platoDetalle.cocina}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tipo Comida</td>
+                                        <td>{{ platoDetalle.tipo}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fechas Disponibles</td>
+                                        <td>Desde <b>{{platoDetalle.fechaDesde| date:'mediumDate': 'UTC -3'}}</b> hasta <b>{{ platoDetalle.fechaHasta| date:'mediumDate': 'UTC -3' }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dias Disponibles</td>
+                                        <td><div ng-repeat="dia in platoDetalle.dias">
+                                                <ul style="list-style-type: none">
+                                                    <li>{{dia}}</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div><!--/ Nutrition info end  -->
+                    <div class=""  >
+                            <ngcart-addtocart class="img-responsive"   id="{{platoDetalle.$id}}" name="{{ platoDetalle.nombre}}" price="{{ platoDetalle.precio}}"  quantity="1" quantity-max="{{ platoDetalle.cantidad_disponible}}" data="platoDetalle.idUsuario">Agregar al Carro</ngcart-addtocart>
+                    </div>
+                </div><!--/ Column end  -->
+                <div class="col-md-5 col-sm-5">
+                    <img class="img-responsive " src="{{platoDetalle.urlPath}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nutrition End -->
+</div><!-- / Inner Page Content End -->	
+<script type="text/ng-template" id="template/ngCart/addtocart.html"><div ng-hide="attrs.id">
+    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+    </div>
+    <div ng-show="attrs.id">
+    <div >
+    <span ng-show="quantityMax">
+        <select name="quantity" id="quantity" ng-model="q" ng-options=" v for v in qtyOpt"></select>
+    </span>
+    <a class="btn btn-danger btn-sm"
+    ng-click="ngCart.addItem(id, name, price, q, data)"
+    ng-transclude></a>
+    </div>
+    <mark  ng-show="inCart()">
+    Este Item esta en Carrito <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;"><b>Borrar</b></a>
+    </mark>
+    </div>
+</script>
+

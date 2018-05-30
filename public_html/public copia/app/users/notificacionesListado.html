@@ -1,0 +1,40 @@
+<div class="inner-page padd">
+     <h2 class="inner-page__title">{{ titulo}}</h2>
+    <div class="blog">
+        <div class="container">
+            <div class="blog-sidebar">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                        <!-- Blog sidebar page widget -->
+                        
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        <div class="meta">
+                            <i class="fa fa-calendar"></i> - {{date| date:'medium'}}
+                            <span class="pull-right"><i class="fa fa-comment"></i> <a href="#">&nbsp;{{ canditadNotif}} notificaciones</a></span>
+                        </div>
+                        <!-- Blog sidebar page widget -->
+                        <div class="sidebar-widget">
+                            <!-- Widget Heading -->
+                           
+                            
+                
+                            <!-- Recent post list -->
+                            <ul class="list-unstyled " ng-repeat="(id,noti) in notifList">
+                                
+                                <li><i class="fa fa-angle-double-right text-primary"></i>{{noti.id}} - {{noti.fecha| date:'yyyy-MM-dd HH:mm:ss Z'}} 
+                                    <br> <b>  {{ noti.texto}}</b>
+                                    <br>
+                                    
+                                </li>
+
+                            </ul>
+
+                        </div><!--/ Widget end -->
+                    </div>
+
+                </div><!--/ Inner row end -->
+            </div><!--/ Page sidebar end -->
+        </div>
+    </div>
+</div>

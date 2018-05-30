@@ -1,0 +1,58 @@
+<div class="inner-page padd">
+    <!-- Nutrition Start -->
+    <h2> Mis platos publicados</h2>
+    <div class="nutrition">
+        <div class="row" ng-repeat="item in misplatos">
+            <div class="col-sm-4" >
+                <div class="nutrition-item">
+
+                    <!-- Heading -->
+                    <h4>{{item.nombre}}</h4>
+                    <p>{{ item.descripcion}}.</p>
+                    <!-- Image -->
+                    <img class="img-responsive img-thumbnail" src="{{ item.urlPath ?  item.urlPath : 'img/platovacio.jpg' }}" alt="" />
+                    <!-- Paragraph -->
+                    
+                    
+                </div><!--/ Nutrition info end  -->
+            </div>
+            <div class="col-sm-4">
+                <!-- <a href="#/platos/list"  ng-click="VerDetalle(item.nombre)" class="list-group-item">  Detalle </a> 
+                <a href="#/platos/list"  ng-click="Ocultar(item.nombre)" class="list-group-item">  Ocultar </a>--> 
+                <!-- Nutrition information table -->
+                    <div class="table-responsive" style="display:inine" id="{{item.nombre}}">
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>Detalle</th>
+                            </thead>
+                              <tbody>
+                            <tr>
+                                <th>Descripcion</th>
+                                <td>{{ item.descripcion}}</td>
+                            </tr>
+                          
+                                <tr>
+                                    <th>Precio</th>
+                                    <td>{{ item.precio}}$</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div class="col-sm-4"><switch name="enabled" ng-model="item.estado" on="activo" off="pausa" class="wide" ng-change="changeCallback(item.$id,item.estado)"></switch></div>
+            
+        </div>
+        
+    </div>
+
+    <!-- Nutrition End -->
+
+    <!-- Showcase Start -->
+
+
+
+    <!-- Showcase End -->
+
+</div><!-- / Inner Page Content End -->
+

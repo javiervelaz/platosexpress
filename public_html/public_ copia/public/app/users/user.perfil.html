@@ -1,0 +1,86 @@
+<div class="container "  > 
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <!-- Footer widget -->
+                 <form  name="editUser" >
+                     <div class="row header-top"> 
+                        <h2>Editar datos de Usuario</h2>
+                        <div class="form-group">
+                            <h3>email</h3>
+                            
+                            <input class="form-control" type="email" placeholder="ingrese su email"   ng-model="user.email" name="email" required />
+                            
+                        </div>
+                            
+                     </div> 
+                
+                    <div class="row header-top"> 
+                        <h2>Datos Personales</h2>
+                        
+                        <div class="form-group">
+                            <h3>Nombre</h3>    
+                            
+                            <input class="form-control" type="text" placeholder="Ingresa tu nombre" ng-model="user.nombre" name="nombre" required  />
+                        </div>
+                        
+                        <div class="form-group">
+                            <h3>Telefono</h3>    
+                            
+                            <input class="form-control" type="text" placeholder="Ingresa tu telefono" ng-model="user.telefono" name="telefono" required />
+                        </div>
+                    </div>  
+                    <div class="row header-top" > 
+                        <h2>Domicilio</h2>    
+                        <!--<div class="form-group">
+                            <h3>País</h3>  
+                            <input class="form-control" type="text" placeholder="argentina" ng-model="user.pais" name="pais"  disabled />
+                        </div>
+                        <div class="form-group">
+                            <h3>Provincia</h3> 
+                            <select data-ng-options="o.name for o in options" data-ng-model="selectedOption" ></select>
+                            
+                        </div>
+                        <div class="form-group">
+                            <h3>Ciudad</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa tu ciudad" ng-model="user.direccion.ciudad"  name="ciudad" required/>
+                        </div>
+                        <div class="form-group">
+                            <h3>Barrio</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa tu barrio" ng-model="user.direccion.barrio"  name="barrio" required/>
+                        </div>
+                        <div class="form-group">
+                            <h3>Calle</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa tu calle" ng-model="user.direccion.calle" name="calle" required/>
+                        </div>
+                        <div class="form-group">
+                            <h3>Altura</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa la altura" ng-model="user.direccion.altura" name="altura" required/>
+                        </div>
+                        <div class="form-group">
+                            <h3>Piso</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa tu piso" ng-model="user.direccion.piso" name="piso" required/>
+                        </div>
+                            
+                        <div class="form-group">
+                            <h3>Nro de puerta</h3>  
+                            <input class="form-control" type="text" placeholder="Ingresa el nro de puerta" ng-model="user.direccion.numero" name="numero" required/>
+                        </div>
+                        -->
+                        <div class="form-group" ng-show="noEditable == true" >
+                            <h3>Direccion</h3>  
+                            <input class="form-control" type="text"  ng-model="user.address" ng-disabled="true" />
+                            <a class="btn btn-success" ng-click="edit()">Editar direccion</a>
+                        </div>
+                        <div class="form-group" ng-show="editable == true" >
+                            <h3>Cambiar Direccion</h3> 
+                            <span ><b>Actual:</b>{{ user.address}} </span>
+                            <br>
+                            <input type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
+                        </div>
+                    </div>    
+
+                        <a   ng-click="saveEditUser()" class="btn btn-danger" type="submit">Enviar</a>
+                    </form>
+            </div>
+        </div>     
+    </div> 

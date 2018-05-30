@@ -1,0 +1,41 @@
+   <div class="container ">    
+            <!-- Footer widget -->
+           
+            
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">    
+                    <!-- Heading -->
+                    <h4>Ingrear como usuario</h4>
+                    <!-- Paragraph -->
+                    <p>Platos Express.</p>
+                    <!-- Subscribe form -->
+                    <form name="loginUser" role="form">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <input class="form-control" type="email" placeholder="Ingresa tu email" ng-model="email"  required/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Ingresa tu clave" ng-model="password" required/>
+                            </div>
+                            <div class="form-group">
+                                <a href="./#/user/resetPassword" class="text-info" style="font-weight: 800" ng-click="doResetPassword()"  >Olvido su password?</a>
+                            </div>
+                            <div class="form-group">
+                                <button ng-click="doLogin()" class="btn btn-success" type="submit">Ingresar</button>
+                                
+                            </div> 
+                            <div class="form-group">
+                                <span>o ingresa con tu usuario de redes sociales!</span>
+                            </div>
+                            <div class="form-group">
+                                
+                                <button ng-click="doLoginFacebook()" class="btn btn-facebook" type="submit">Facebook</button>
+                                <button ng-click="doLoginTwitter()" class="btn btn-twitter" type="submit">Twitter</button>
+                                <button ng-click="doLoginGoogle()" class="btn btn-google" type="submit">Google</button>
+                            </div>   
+                             
+                        </div>  
+                    </form>
+                </div>    
+            </div>
+    </div> <!--/ Footer widget end -->  

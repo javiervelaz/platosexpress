@@ -1,0 +1,124 @@
+<div class="inner-page padd" >	
+
+    <!-- Nutrition Start -->
+    <div class="nutrition">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <!-- Nutrition Item -->
+                    <div class="nutrition-item">
+                        <!-- Heading -->
+                        <h4>{{ platoDetalle.nombre}}</h4>
+                        <!-- Image -->
+
+                        <!-- Paragraph -->
+                        <p>{{ platoDetalle.descripcion}}</p>
+                        <!-- Nutrition information table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td>Precio</td>
+                                        <td>{{ platoDetalle.precio}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cantidad Disponible</td>
+                                        <td>{{ platoDetalle.cantidad_disponible}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Dias Disponibles</td>
+                                        <td><div ng-repeat="dia in platoDetalle.dias">
+                                                <ul style="list-style-type: none">
+                                                    <li>{{dia}}</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delivery</td>
+                                        <td>
+                                            <p ng-if="platoDetalle.delivery == true">Si </p>
+                                            <p ng-if="platoDetalle.delivery == false">No </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div><!--/ Nutrition info end  -->
+                    <div class=""  >
+                        <ngcart-addtocart class="img-responsive"   id="{{platoDetalle.$id}}" name="{{ platoDetalle.nombre}}" price="{{ platoDetalle.precio}}"  quantity="1" quantity-max="{{ cantidad}}" data="platoDetalle.idUsuario">Agregar al Carro</ngcart-addtocart>
+                    </div>
+                </div><!--/ Column end  -->
+                <div class="col-md-5 col-sm-5">
+                    <img class="img-responsive " src="{{platoDetalle.urlPath}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner-page padd">
+        <div class="blog">
+            <div class="container">
+                <div class="blog-sidebar">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6">
+                            <!-- Blog sidebar page widget -->
+                            <div class="sidebar-widget">
+                                <!-- Widget Heading -->
+                                <h4>Preguntas</h4>
+                                <!-- search button and input box -->
+                                <div class="box">
+                                    <textarea cols="80" placeholder="escribi tu  pregunta aqui" rows="4" type="textarea" ng-model="textPregunta"></textarea>
+                                    <button type="submit" class="btn btn-primary btn-sm"  ng-click="doPregunta()" >Preguntar</button>
+                                </div>
+                            </div><!--/ Widget end -->
+                        </div>
+                        <div class="col-md-12 col-sm-6">
+                            <div class="meta">
+                                <i class="fa fa-calendar"></i> - {{date| date:'medium'}}
+                                <span class="pull-right"><i class="fa fa-comment"></i> <a href="#">&nbsp;{{ countPreguntas}} preguntas</a></span>
+                            </div>
+                            <!-- Blog sidebar page widget -->
+                            <div class="sidebar-widget">
+                                <!-- Widget Heading -->
+                                <h4>Preguntas recientes</h4>
+                                <!-- Recent post list -->
+                                <ul class="list-unstyled " ng-repeat="pregunta in preguntasList">
+
+                                    <li><i class="fa fa-angle-double-right text-primary"></i>{{pregunta.fecha| date:'yyyy-MM-dd HH:mm:ss Z'}} -  {{ pregunta.texto_pregunta}}?
+                                        <br>Re:<span class="text-left text-success">{{ pregunta.texto_respuesta}}</span>
+                                    </li>
+
+                                </ul>
+
+                            </div><!--/ Widget end -->
+                        </div>
+
+                    </div><!--/ Inner row end -->
+                </div><!--/ Page sidebar end -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrition End -->
+</div><!-- / Inner Page Content End -->	
+<script type="text/ng-template" id="template/ngCart/addtocart.html">
+    <div ng-hide="attrs.id">
+    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+    </div>
+    <div ng-show="attrs.id">
+    <div>
+    <span ng-show="quantityMax">
+    <select name="quantity" id="quantity" ng-model="q" ng-options=" v for v in qtyOpt"></select>
+    </span>
+    <a class="btn btn-danger btn-sm"
+    ng-click="ngCart.addItem(id, name, price, q, data)"
+    ng-transclude></a>
+    </div>
+    <mark  ng-show="inCart()">
+    Agregado al Carrito <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;"><b>Borrar</b></a>
+    </mark>
+    </div>
+</script>

@@ -1,0 +1,36 @@
+<!--user loged-->
+<div  ng-show="{{ hideLogin}}">
+    <ul class="nav navbar-nav" >
+        <li><b>{{ nombreUser}} </b> </li>
+        <li> &nbsp </li>
+        <li> Vendedor: </li>
+        <li> &nbsp </li>
+        <li> <ul class="nav navbar-nav" >
+                <li ng-repeat="n in calif(1, califComprador)"><img src="img/estrella.png" style="height: 10px"></li>
+
+            </ul> </li>
+        <li> &nbsp </li>
+        <li> Comprador: </li>
+        <li> &nbsp </li>
+        <li> <ul class="nav navbar-nav" >
+                <li ng-repeat="n in calif(1, califComprador)"><img src="img/estrella.png" style="height: 10px"></li>
+
+            </ul> </li>
+         <li> &nbsp </li>
+          <li> &nbsp </li>
+           <li> &nbsp </li>
+        <li><button class="btn btn-danger" ng-click="logOut()" type="button">Salir</button></li>
+        <li></li>
+    </ul>    
+</div>
+
+
+<!--user unloged-->
+<div ng-hide="{{ hideLogin}}">
+    <a href="/user/login" class="btn btn-success" >Login</a>
+
+    <a href="/user/new" class="btn btn-success" >Registro</a>  
+</div>
+
+
+

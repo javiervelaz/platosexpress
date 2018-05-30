@@ -1,0 +1,13 @@
+<!--user loged-->
+<div ng-show="{{ hideLogin}}">
+    <h3 class="success" > {{ nombreUser}}</h3><button ng-click="logOut()" type="button">Logout</button>
+</div>
+<!--user unloged-->
+<div ng-hide="{{ hideLogin}}">
+    <a href="./#/user/login" class="btn btn-danger" >Login</a>
+
+    <a href="./#/user/new" class="btn btn-danger" >Registro</a>  
+</div>
+
+
+

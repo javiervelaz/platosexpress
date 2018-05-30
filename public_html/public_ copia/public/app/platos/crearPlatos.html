@@ -1,0 +1,78 @@
+<div class="container" > 
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <!-- Footer widget -->
+            <!-- Heading -->
+            <h2>Crea tu Plato</h2>
+            <!-- Paragraph -->
+            <!-- Subscribe form -->
+            <form  name="platoForm" >
+                <div class="row header-top"> 
+                    <h3>Ingresa tu menu aqui</h3>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Nombre del plato" ng-model="nombre" name="nombre" required />
+                    </div>
+                    <div class="form-group">
+                        <p ng-show="platoForm.descripcion.$invalid" class="help-block">Descripción</p>
+                        <textarea class="form-control" type="text" placeholder="Ingrediente,modeo de preparacion,observaciones..." ng-model="descripcion" name="descripcion" required></textarea>  
+                    </div>    
+
+                </div> 
+                <div class="row header-top"> 
+                    <h3>Datos del plato</h3>
+                    <div class="form-group">
+                        <h4>Realiza envio? <input type="checkbox" ng-model="delivery" value="si"></h4>
+                           
+                    </div>
+                    
+                    <div class="form-group">
+                        <p ng-show="platoForm.precio.$invalid" class="help-block">Precio</p>
+                        <input class="form-control" type="number" min="1" max="9999" placeholder="Ingresa el precio en pesos" ng-model="precio" name="precio"  required />
+                    </div>
+                    <div class="form-group">
+                        <p ng-show="platoForm.porciones.$invalid" class="help-block">Cantidad </p>
+                        <input class="form-control" type="number" min="1" max="99" placeholder="Cantidad de porciones del plato" ng-model="cantPorciones.porciones" name="porciones"  required />
+                    </div>    
+
+                </div>  
+                <div class="row header-top"> 
+                    
+                    <div class="form-group">
+                        <h3>Ofrezco este platos los dias:</h3>
+                        <ul style="list-style-type: none">
+                            <div class="input-group-lg"  ng-repeat="dias in semana">
+                                <li > <input type="checkbox" 
+                                             value="{{dias}}" 
+                                             name="selectDay[]" 
+                                             ng-checked="selection.indexOf(dias) > - 1"
+                                             ng-click="toogleSelection(dias)"
+                                             > {{dias}} </li>   
+                            </div>
+                        </ul>
+                    </div>    
+                </div>    
+                <div class="row header-top">
+                    <h3>Subi una foto de tu plato.</h3>
+                    <input id="file" name="file" ng-model="imgFile"  type="file" fileread="uploadme.src" model="files" previmages="imagesPrev"  >  
+                </div>    
+                <div class="row header-top">
+                    <div class="menu-head" ng-repeat=" img in imagesPrev">
+                        <img class="menu-img img-responsive img-thumbnail" ng-src="{{ img}}" reguired/>
+                        <div class="title-border br-red"></div>
+                    </div>  
+                </div>  
+                
+                <div class="row header-top" > 
+                    <br>
+                    <button  ng-click="SavePlato()" class="btn btn-danger" type="submit">Crear</button>
+                </div>    
+            </form>
+        </div>
+    </div> 
+</div>   
+ <!-- error messages template -->
+    <script id="errors-template.html" type="text/ng-template">
+        <span ng-message="required">* required!</span>
+        <span class="form-error" ng-message="checkEndDate">* end date cannot be earlier than start date</span>
+    </script>
+
